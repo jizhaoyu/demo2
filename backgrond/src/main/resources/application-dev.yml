@@ -1,0 +1,14 @@
+# 开发环境配置
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3307/book_trading?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+
+
+# 开发环境日志级别
+logging:
+  level:
+    com.example.booktrading: debug
+    org.springframework.web: debug
