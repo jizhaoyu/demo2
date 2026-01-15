@@ -1,0 +1,60 @@
+# 腾讯云部署环境配置（使用 Railway MySQL）
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # Railway MySQL 公网连接信息
+    url: jdbc:mysql://tramway.proxy.rlwy.net:30117/railway?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
+    username: root
+    password: norGIcUvkSaMWaIaTDfKgbMhbROiHgMm
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: non_null
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 50MB
+
+logging:
+  level:
+    com.example.booktrading: info
+    org.springframework.web: warn
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  type-aliases-package: com.example.booktrading.entity.po
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.nologging.NoLoggingImpl
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /doc.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+
+app:
+  jwt:
+    secret: bookTradingSecretKey2024VeryLongSecretKeyForJWTTokenGeneration
+    expiration: 28800000
+  upload:
+    path: ./uploads
+    allowed-types: jpg,jpeg,png,gif,webp
+
+ai:
+  zhipu:
+    api-key: 
+    model: glm-4-flash
